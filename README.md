@@ -1,12 +1,15 @@
-# ETL pipeline with Python and PostgreSQL
-Postgres database and ETL pipeline that model song and log datasets (~ 10,000 records) to produce star schema. The database is designed to optimize queries on music analysis.
-- The project includes 5 files and 1 folder:
+# ETL pipeline with Python and PostgreSQL/ Apache Cassandra
+Two ETL pipelines using Python and PostgreSQL/Apache Cassandra: 
+1. Postgres database and ETL pipeline that model song and log datasets (~ 8,000 records). The database is designed with star schema to optimize queries on music analysis.
+2. Apache Cassandra database and ETL pipeline with more than 8,000 records for users' behaviors analysis
+- The project includes 5 files and 2 folders:
 1. __test.ipynb__ - displays the first few rows of each table to let you check your database.
 2. __create_tables.py__ - drops and creates your tables. You run this file to reset your tables before each time you run your ETL scripts.
 3. __etl.ipynb__ - reads and processes a single file from song_data and log_data and loads the data into tables. This notebook contains detailed instructions on the ETL process for each of the tables.
 4. __etl.py__ - reads and processes files from song_data and log_data and loads them into your tables.
 5. __sql_queries.py__ - contains all sql queries, and is imported into the last three files above.
 6. __data__ - folder contains datasets
+7. __Apache Cassandra__ - folder contains data modeling with Cassandra
 
 ## Schema Design
 
