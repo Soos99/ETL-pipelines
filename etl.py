@@ -7,14 +7,15 @@ from sql_queries import *
 def process_song_file(cur, filepath):
     # open song file
     df = pd.read_json(filepath, lines=True)
-    #print(df.shape[0])
 
     # insert song record
     song_data = df[['song_id','title','artist_id','year','duration']].values.tolist()[0]
     cur.execute(song_table_insert, song_data)
     
     # insert artist record
-    artist_data = df[['artist_id','artist_name','artist_location','artist_latitude','artist_longitude']].values.tolist()[0]
+    artist_data = df[['artist_id','artist_name','artist_location', \
+                      'artist_latitude','artist_longitude']] \
+                        .values.tolist()[0]
     cur.execute(artist_table_insert, artist_data)
 
 
@@ -30,8 +31,9 @@ def process_log_file(cur, filepath):
     t = pd.to_datetime(df['ts'],unit = 'ms')
     
     # insert time data records
-    time_df = pd.DataFrame(data = {"timestamp":t.dt.time, "hour":t.dt.hour, "week": t.dt.week, \
-                                   "day":t.dt.day,"month":t.dt.month,"year":t.dt.year,"weekday":t.dt.weekday})
+    time_df = pd.DataFrame(data = {"timestamp":t.dt.time, "hour":t.dt.hour, \
+                                   "week": t.dt.week, "day":t.dt.day,"month":t.dt.month, \
+                                   "year":t.dt.year, "weekday":t.dt.weekday})
 
     for i, row in time_df.iterrows():
         cur.execute(time_table_insert, list(row))
@@ -56,7 +58,9 @@ def process_log_file(cur, filepath):
             songid, artistid = None, None
 
         # insert songplay record
-        songplay_data = (row.ts,row.userId,row.level,songid,artistid,row.sessionId,row.location,row.userAgent)
+        songplay_data = (row.ts,row.userId,row.level,songid, \
+                         artistid,row.sessionId,row.location, \
+                         row.userAgent)
         cur.execute(songplay_table_insert, songplay_data)
 
 
