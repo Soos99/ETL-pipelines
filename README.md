@@ -1,4 +1,4 @@
-# ETL pipeline with Python and PostgreSQL/ Apache Cassandra
+# ETL pipelines with Python and PostgreSQL/ Apache Cassandra
 Two ETL pipelines using Python and PostgreSQL/Apache Cassandra: 
 1. Postgres database and ETL pipeline that model song and log datasets (~ 8,000 records). The database is designed with star schema to optimize queries on music analysis.
 2. Apache Cassandra database and ETL pipeline with more than 8,000 records for users' behaviors analysis
